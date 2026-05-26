@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pagamento PIX</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#070312;
+color:white;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+min-height:100vh;
+padding:20px;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+
+background:
+radial-gradient(circle at top,#47107a 0%,#070312 60%);
+
+z-index:-1;
+}
+
+.box{
+
+width:100%;
+max-width:520px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+padding:40px;
+
+border-radius:30px;
+
+text-align:center;
+
+backdrop-filter:blur(12px);
+}
+
+h1{
+font-size:50px;
+margin-bottom:15px;
+}
+
+h1 span{
+color:#b84dff;
+}
+
+.desc{
+opacity:.7;
+margin-bottom:35px;
+line-height:1.7;
+}
+
+.info{
+
+background:rgba(255,255,255,.03);
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:25px;
+
+text-align:left;
+}
+
+.info p{
+margin-bottom:12px;
+font-size:18px;
+}
+
+.info b{
+color:#c87dff;
+}
+
+.pix{
+
+background:#12051f;
+
+padding:22px;
+
+border-radius:20px;
+
+word-break:break-all;
+
+line-height:1.7;
+
+margin-bottom:25px;
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(45deg,#7b2dff,#c000ff);
+
+color:white;
+
+font-size:16px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.02);
+}
+
+.msg{
+
+margin-top:15px;
+
+display:none;
+
+color:#00ff84;
+
+font-weight:700;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>
+PIX <span>Pagamento</span>
+</h1>
+
+<p class="desc">
+Finalize sua compra de forma rápida e segura.
+</p>
+
+<div class="info">
+
+<p>
+📦 Produto:
+<b id="produto"></b>
+</p>
+
+<p>
+💰 Valor:
+<b id="valor"></b>
+</p>
+
+</div>
+
+<div class="pix" id="pix">
+
+228.197.397-25
+
+</div>
+
+<button onclick="copiarPix()">
+
+COPIAR CHAVE PIX
+
+</button>
+
+<div class="msg" id="msg">
+
+✅ Chave PIX copiada!
+
+</div>
+
+</div>
+
+<script>
+
+const params =
+new URLSearchParams(window.location.search);
+
+document.getElementById("produto")
+.innerText =
+params.get("produto");
+
+document.getElementById("valor")
+.innerText =
+"R$ " + params.get("valor");
+
+function copiarPix(){
+
+const pix =
+document.getElementById("pix").innerText;
+
+navigator.clipboard.writeText(pix);
+
+document.getElementById("msg")
+.style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
